@@ -1,12 +1,15 @@
-﻿<div class="sidebar" data-background-color="dark">
+﻿@{
+    
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString();
+    var actionName = ViewContext.RouteData.Values["action"].ToString();
+}
+
+<div class="sidebar" data-background-color="dark">
     <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo">
-                <img src="assets/img/kaiadmin/logo_light.svg"
-                     alt="navbar brand"
-                     class="navbar-brand"
-                     height="20" />
+            <a href="/Home/Index" class="logo">
+           <img src="~/assets/img/pathlab/pathlab_logo.png" alt="navbar brand" class="navbar-brand" height="140" />
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -25,24 +28,10 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
-                <li class="nav-item active">
-                    <a data-bs-toggle="collapse"
-                       href="#dashboard"
-                       class="collapsed"
-                       aria-expanded="false">
-                        <i class="fas fa-home"></i>
-                        <p>Dashboard</p>
-                        <span class="caret"></span>
+                <li class="nav-item  @(controllerName == "Home" && actionName =="Index" ? "active" : "")">
+                    <a href="/Home/index">
+                        <i class="fas fa-home"></i><p>Dashboard</p>
                     </a>
-                    <div class="collapse" id="dashboard">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="../demo1/index.html">
-                                    <span class="sub-item">Dashboard 1</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
@@ -50,16 +39,22 @@
                     </span>
                     <h4 class="text-section">Components</h4>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item @(controllerName == "Tests" ? "active" : "")">
+                 
                     <a data-bs-toggle="collapse" href="#base">
                         <i class="fas fa-layer-group"></i>
-                        <p>Test List</p>
+                        <p>Tests</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
-                            <li>
-                                <a href="components/avatars.html">
+                            <li class="@(controllerName == "Tests" && actionName == "TestList" ? "active" : "")">
+                                <a href="/Tests/TestList">
+                                    <span class="sub-item">Test List</span>
+                                </a>
+                            </li>
+                            <li class="@(controllerName == "Tests" && actionName == "AddTest" ? "active" : "")">
+                                <a href="/Tests/AddTest">
                                     <span class="sub-item">Add Test</span>
                                 </a>
                             </li>

@@ -1,0 +1,221 @@
+﻿@{
+    ViewData["Title"] = "Add New Test";
+}
+
+<link href="~/css/tests/add-test.css" rel="stylesheet" />
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <span><strong>Add New Test</strong></span>
+            <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fa fa-paper-plane" aria-hidden="true"></i>Submit</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div id="add-test-form-container">
+            <form id="addTestForm">
+                <div class="row mb-3">
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="TestType" class="form-label">Test Type</label>
+                        <select class="form-control" id="TestType" name="testCode" required>
+                            <option value="">-- Select Test Type --</option>
+                            <option value="Blood Test">Blood Test</option>
+                            <option value="Urine Test">Urine Test</option>
+                            <option value="X-Ray">X-Ray</option>
+                            <option value="MRI">MRI</option>
+                            <option value="CT Scan">CT Scan</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="Department" class="form-label">Department</label>
+                        <select class="form-control" id="Department" name="Department" required>
+                            <option value="">-- Select Department --</option>
+                            <option value="Hematology">Hematology</option>
+                            <option value="Microbiology">Microbiology</option>
+                            <option value="Radiology">Radiology</option>
+                            <option value="Pathology">Pathology</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="TestName" class="form-label">Test Name</label>
+                        <input type="text" class="form-control" id="TestName" name="TestName" required />
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="TestCode" class="form-label">Test Code</label>
+                        <input type="text" class="form-control" id="TestCode" name="TestCode" required />
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="Price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="Price" name="Price" required />
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="BarCodeSuffix" class="form-label">Bar Code Suffix</label>
+                        <input type="text" class="form-control" id="BarCodeSuffix" name="BarCodeSuffix" required />
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="Sample" class="form-label">Sample</label>
+                        <select class="form-control" id="Sample" name="Sample">
+                            <option value="">-- Select Sample --</option>
+                            <option value="Blood">Blood</option>
+                            <option value="Urine">Urine</option>
+                            <option value="Saliva">Saliva</option>
+                            <option value="Tissue">Tissue</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="SampleColor" class="form-label">Sample Color</label>
+                        <select class="form-control" id="SampleColor" name="SampleColor">
+                            <option value="">-- Select Sample Color --</option>
+                            <option value="Red">Red</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Clear">Clear</option>
+                            <option value="Brown">Brown</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="test-price" class="form-label col-12">Gender</label>
+                        <div class="col-12">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Gender" id="chkMale" checked>
+                                <span class="form-check-label" for="chkMale">
+                                    Male
+                                </span>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Gender" id="chkFemale">
+                                <span class="form-check-label" for="chkFemale">
+                                    Female
+                                </span>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Gender" id="chkBoth">
+                                <span class="form-check-label" for="chkBoth">
+                                    Both
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 mt-4">
+                        <label class="form-label col-12">Required Field</label>
+                        <div class="col-12">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="RequiredField" id="LMPRequired" checked>
+                                <span class="form-check-label" for="LMPRequired">
+                                    LMP Required
+                                </span>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="RequiredField" id="IDRequired">
+                                <span class="form-check-label" for="IDRequired">
+                                    ID Required
+                                </span>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="RequiredField" id="ConsentForm">
+                                <span class="form-check-label" for="ConsentForm">
+                                    Consent Form
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-2 mt-4">
+                        <label for="PreCollectionGuidline" class="form-label">Pre Collection Guidline</label>
+                        <div class="col-12">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="PreCollectionGuidline" id="PreCollectionGuidline_YES" checked>
+                                <span class="form-check-label" for="PreCollectionGuidline_YES">
+                                    Yes
+                                </span>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="PreCollectionGuidline" id="PreCollectionGuidline_NO">
+                                <span class="form-check-label" for="PreCollectionGuidline_NO">
+                                    No
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="Guidline_Attachment" class="form-label">Guidline Attachment</label>
+                        <input type="file" class="form-control" id="GuidlineAttachment" name="GuidlineAttachment" required />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card testlist">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <span><strong>Child Test List</strong></span>
+                </div>
+            </div>
+            <div class="card-body">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <span><strong>Add Child Test</strong></span>
+                    @* <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-plus-square" aria-hidden="true"></i>add</button> *@
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="mt-3">
+                    <label>Field Type</label>
+                    <select class="form-control " id="FieldType" name="FieldType">
+                        <option>Single Field</option>
+                        <option>Multiple Field</option>
+                    </select>
+                </div>
+                <div class="mt-3">
+                    <label>Test Method</label>
+                    <input type="text" class="form-control" id="TestMethod" name="TestMethod" />
+                </div>
+                <div class="mt-3 d-flex justify-content-end">
+                    <button class="btn btn-outline-danger"><i class="fa fa-file"></i>Save</button>
+                </div>
+                <hr />
+                <div class="mt-3">
+                    <label>Name</label>
+                    <input type="text" class="form-control" id="Name" name="Name" />
+                </div>
+                <div class="mt-3">
+                    <label>Test Method</label>
+                    <input type="text" class="form-control" id="TestMethod" name="TestMethod" />
+                </div>
+                <div class="mt-3">
+                    <label>Field</label>
+                    <select class="form-control" id="Field" name="Field">
+                        <option value="Numeric">Numeric</option>
+                        <option value="Text">Text</option>
+                        <option value="Decimal">Decimal</option>
+                    </select>
+                </div>
+                <div class="row mt-3">
+                    <label>Result Range</label>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <input type="text" class="form-control" id="ResultRangeMin" name="ResultRangeMin" />
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <input type="text" class="form-control" id="ResultRangeMax" name="ResultRangeMax" />
+                        </div>
+                    @* </div> *@
+                </div>
+
+                <div class="mt-3 d-flex justify-content-end">
+                    <button class="btn btn-outline-danger"><i class="fa fa-plus"></i>Add Field</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/tests/add-test.js"></script>
+}
+
+
