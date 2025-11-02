@@ -10,6 +10,8 @@ namespace PathLab.Infrastructure.Data
 
         public SqlConnectionFactory(string connectionString)
         {
+            Console.WriteLine($"Connection string received: {connectionString}");
+
             _connectionString = connectionString;
         }
 
