@@ -45,27 +45,27 @@
         }
     };
 
-    const Toaster = {
-        info: function (msg, title = 'Info') {
-            toastr.info(msg, title);
-        },
-        success: function (msg, title = 'Success') {
-            toastr.success(msg, title);
-        },
-        warning: function (msg, title = 'Warning') {
-            toastr.warning(msg, title);
-        },
-        error: function (msg, title = 'Error') {
-            toastr.error(msg, title);
-        }
-    };
+    //const Toaster = {
+    //    info: function (msg, title = 'Info') {
+    //        toastr.info(msg, title);
+    //    },
+    //    success: function (msg, title = 'Success') {
+    //        toastr.success(msg, title);
+    //    },
+    //    warning: function (msg, title = 'Warning') {
+    //        toastr.warning(msg, title);
+    //    },
+    //    error: function (msg, title = 'Error') {
+    //        toastr.error(msg, title);
+    //    }
+    //};
 
-    toastr.options = {
-        closeButton: true,
-        progressBar: true,
-        positionClass: 'toast-top-right',
-        timeOut: '4000'
-    };
+    //toastr.options = {
+    //    closeButton: true,
+    //    progressBar: true,
+    //    positionClass: 'toast-top-right',
+    //    timeOut: '4000'
+    //};
 
     const ajaxCall = {
         Get: function (url, successCallback, errorCallback, options = {}) {
@@ -220,7 +220,7 @@
     return {
         localStorage: LocalStorage,
         session: Session,
-        toaster: Toaster,
+        //toaster: Toaster,
         ajax: ajaxCall,
         swal: SwalWrapper,
         notify: Notify
