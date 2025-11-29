@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PathLab.Application.Common.Interfaces
+namespace PathLab.Application.Contracts.Common
 {
     public interface IDapperHelper
     {

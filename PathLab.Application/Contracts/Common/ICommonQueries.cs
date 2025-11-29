@@ -1,6 +1,6 @@
 ﻿using PathLab.Application.DTOs;
 
-namespace PathLab.Application.Common.Interfaces
+namespace PathLab.Application.Contracts.Common
 {
     public interface ICommonQueries
     {

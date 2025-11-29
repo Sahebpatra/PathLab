@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using PathLab.Application.Common.Interfaces;
+using PathLab.Application.Contracts.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;

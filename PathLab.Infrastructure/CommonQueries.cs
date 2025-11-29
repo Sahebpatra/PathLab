@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using PathLab.Application.Common.Interfaces;
+using PathLab.Application.Contracts.Common;
 using PathLab.Application.DTOs;
 using PathLab.Infrastructure.Data;
 using System;

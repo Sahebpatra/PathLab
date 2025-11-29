@@ -1,1 +1,15 @@
-﻿
+﻿#spnclrsmpl {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+}
+.btn {
+    width: 120px !important;
+    height: 30px !important;
+    padding: 0.21em !important;
+    font-size: 14px !important;
+}
+
+    .btn i {
+        margin-right: 8px;
+    }

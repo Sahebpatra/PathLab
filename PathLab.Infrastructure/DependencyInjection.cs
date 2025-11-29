@@ -1,7 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using PathLab.Application.Common.Interfaces;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using PathLab.Application.Contracts.Common;
+using PathLab.Application.Contracts.IRepositories;
+using PathLab.Application.Services;
 using PathLab.Infrastructure.Data;
+using PathLab.Infrastructure.Repositories;
+using System.Reflection;
 
 namespace PathLab.Infrastructure
 {
@@ -25,6 +29,20 @@ namespace PathLab.Infrastructure
             services.AddScoped<IDapperHelper, DapperHelper>();
             services.AddScoped<IAdoHelper, AdoHelper>();
             services.AddScoped<ICommonQueries, CommonQueries>();
+
+            // Application Services
+            services.Scan(scan => scan
+                .FromAssemblies(typeof(TestService).Assembly)
+                .AddClasses(classes => classes.InNamespaces("PathLab.Application.Services"))
+                .AsMatchingInterface()
+                .WithScopedLifetime());
+
+            // Repositories
+            services.Scan(scan => scan
+                .FromAssemblies(typeof(TestRepository).Assembly)
+                .AddClasses(classes => classes.InNamespaces("PathLab.Infrastructure.Repositories"))
+                .AsMatchingInterface()
+                .WithScopedLifetime());
 
             return services;
         }

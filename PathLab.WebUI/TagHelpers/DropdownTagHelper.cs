@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Newtonsoft.Json;
-using PathLab.Application.Common.Interfaces;
+using PathLab.Application.Contracts.Common;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace PathLab.WebUI.TagHelpers
@@ -15,8 +17,10 @@ namespace PathLab.WebUI.TagHelpers
         [HtmlAttributeName("dropdown-for")]
         public string DropdownType { get; set; }
 
+        [Required]
         [HtmlAttributeName("name")]
         public string Name { get; set; }
+
 
         [HtmlAttributeName("id")]
         public string Id { get; set; }
@@ -38,6 +42,8 @@ namespace PathLab.WebUI.TagHelpers
         [HtmlAttributeName("readonly")]
         public bool ReadOnly { get; set; }
 
+        [HtmlAttributeName("selected-value")]
+        public string DeafaultSelectedValue { get; set; }
 
         [ViewContext]
         [HtmlAttributeNotBound]
@@ -53,7 +59,7 @@ namespace PathLab.WebUI.TagHelpers
             {
                 output.TagName = "select";
                 output.Attributes.SetAttribute("name", Name);
-                output.Attributes.SetAttribute("id", Id ?? DropdownType);
+                output.Attributes.SetAttribute("id", Id ?? Name);
                 output.Attributes.SetAttribute("class", $"{CssClass ?? ""} form-control");
                 if (Required)
                     output.Attributes.SetAttribute("required", "required");
@@ -63,12 +69,13 @@ namespace PathLab.WebUI.TagHelpers
                     output.Attributes.SetAttribute("readonly", "readonly");
 
 
-                var selectedValue = ViewContext.ViewData.Eval(Name ?? DropdownType)?.ToString();
+                var selectedValue = DeafaultSelectedValue ?? ViewContext.ViewData.Eval(Name ?? DropdownType)?.ToString();
                 var LabId = 1;
 
                 var items = await _queries.GetOptionItemsAsync(DropdownType ?? Name, LabId, ServiceId);
-                output.Content.AppendHtml($"<option value=\"\">-- Select {DropdownType ?? Name} --</option>");
-               
+                if(string.IsNullOrWhiteSpace(selectedValue))
+                    output.Content.AppendHtml($"<option value=\"\"> Select an option </option>");
+
                 var childContent = await output.GetChildContentAsync();
                 output.Content.AppendHtml(childContent);
                 if (items.Count() > 0)

@@ -1,7 +1,7 @@
 ﻿using System.Data;
 
 
-namespace PathLab.Application.Common.Interfaces
+namespace PathLab.Application.Contracts.Common
 {
     public interface IConnectionFactory
     {

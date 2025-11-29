@@ -1,5 +1,58 @@
-﻿@{
-     ViewData["Title"] = "Test List";
+﻿@model List<TestDto>
+@{
+    ViewData["Title"] = "Test List";
 }
+<link href="~/css/tests/test-list.css" rel="stylesheet" />
 
-<h1>Test List</h1>
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h4><strong>Test List</strong></h4>
+            <button type="button" id="btnAddNew" class="btn btn-sm btn-outline-danger"><i class="fa fa-plus"></i> Add Test</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-responsive table-striped" id="testTable">
+            <thead>
+                <tr class="table-danger">
+                    <th>#</th>
+                    <th>Test Name</th>
+                    <th>Test Type</th>
+                    <th>Department</th>
+                    <th>Gender</th>
+                    <th>Sample</th>
+                    @* <th>Sample Color</th> *@
+                    <th class="text-center ">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var index = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    index++;
+                    <tr>
+                        <td style="width:10px;">@index</td>
+                        <td>@item.TestDesc</td>
+                        <td>@item.TestTypeText</td>
+                        <td>@item.DepartmentText</td>
+                        <td>@item.Gender</td>
+                        <td>
+                            @item.SampleText <div style="background-color: @item.SampleColorText;" id="spnclrsmpl">
+                            </div>
+                        </td>
+                        @* <td>@item.SampleColorText</td> *@
+                        <td class="text-center "><i class="far fa-edit text-primary" style="cursor:pointer;" data-testid="@item.TestId" data-ctrl="edit-test"></i></td>
+                    </tr>
+                    
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/tests/test-list.js" asp-append-version="true"></script>
+}

@@ -2994,7 +2994,7 @@ label.error {
   padding: 12px 24px !important; }
 .table thead th {
   font-size: .95rem;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   letter-spacing: 1px;
   padding: 12px 24px !important;
   border-bottom-width: 1px;

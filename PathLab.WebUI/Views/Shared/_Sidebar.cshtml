@@ -42,7 +42,7 @@
                 <li class="nav-item @(controllerName == "Tests" ? "active" : "")">
                  
                     <a data-bs-toggle="collapse" href="#base">
-                        <i class="fas fa-layer-group"></i>
+                        <i class="fas fa-flask"></i>
                         <p>Tests</p>
                         <span class="caret"></span>
                     </a>
@@ -53,11 +53,11 @@
                                     <span class="sub-item">Test List</span>
                                 </a>
                             </li>
-                            <li class="@(controllerName == "Tests" && actionName == "AddTest" ? "active" : "")">
-                                <a href="/Tests/AddTest">
+                            @* <li class="@(controllerName == "Tests" && actionName == "AddTest" ? "active" : "")">
+                                <a href="/Tests/AddEditTest">
                                     <span class="sub-item">Add Test</span>
                                 </a>
-                            </li>
+                            </li> *@
                         </ul>
                     </div>
                 </li>

@@ -1,0 +1,78 @@
+﻿@using PathLab.Application.DTOs
+@model List<TestDetailsDto>
+@{
+    var index = 0;
+}
+<div class="card testlist">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <span><strong>Added Test List</strong></span>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-responsive">
+            <thead class="">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Field</th>
+                    <th>Unit</th>
+                    <th>Range</th>
+                    <th>Formula</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var parent in Model)
+                {
+                    index++;
+                    var index1 = 0;
+                    <tr class="parent-tr-bg parent-row" data-parent-id="@parent.TestDetailsID">
+                        <td class="text-center"><input type="checkbox" id="chkedit_@index" /></td>
+                        <td>@parent.TestName</td>
+                        <td>@(parent.FieldType == "1" ? "Single" : "Multiple")</td>
+                        <td>@(parent.FieldType == "1" ? parent.Unit : "")</td>
+                        <td>@(parent.FieldType == "1" ? parent.ResultRenge : "")</td>
+                        <td class="text-center">@* <input type="checkbox" id="chkfml_@index" /> *@</td>
+                        <td>
+                            <i class="far fa-trash-alt text-danger me-2"></i>
+                            @if (parent.FieldType == "2" && parent.Children.Any())
+                            {
+                                <i class="far fa-plus-square toggle-child" style="cursor:pointer"></i>
+                            }
+                        </td>
+                    </tr>
+                    if (parent.Children.Any())
+                    {
+                        <tr class="child-table child-of-@parent.TestDetailsID" style="display:none;">
+                            <td colspan="7" class="td-inner-table" style="padding: 5px!important;">
+                                <table class="table">
+                                    <tbody>
+                                        @foreach (var child in parent.Children)
+                                        {
+                                            index1++;
+                                            if (parent.TestDetailsID == child.ParrentId && child.ParrentId != 0)
+                                            {
+                                                <tr>
+                                                    <td><input type="checkbox" id="chkedit_@index@index1" /></td>
+                                                    <td>@child.TestName</td>
+                                                    <td>@(child.FieldType == "1" ? "Single" : "Multiple")</td>
+                                                    <td>@child.Unit</td>
+                                                    <td>@child.ResultRenge</td>
+                                                    <td><input type="checkbox" id="chkfml_@index@index1" /></td>
+                                                    <td>
+                                                        <i class="far fa-trash-alt text-danger"></i>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    }
+                }
+            <tbody>
+        </table>
+    </div>
+</div>

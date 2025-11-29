@@ -1,5 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
-using PathLab.Application.Common.Interfaces;
+using PathLab.Application.Contracts.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;

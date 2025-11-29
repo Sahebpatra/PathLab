@@ -36,7 +36,9 @@ label {
     margin-left: 0;
     margin-right: 5px;
 }
-
+.card {
+    margin-bottom: 10px !important;
+}
 
 
 .card-header div span {

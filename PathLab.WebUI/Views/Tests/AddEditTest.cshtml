@@ -1,0 +1,255 @@
+﻿@{
+    ViewData["Title"] = "Add New Test";
+}
+
+<link href="~/css/tests/add-test.css" rel="stylesheet" asp-append-version="true" />
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <span><a href="/Tests/TestList" class="btn btn-sm btn-outline-dark"><i class="fa fa-arrow-left"></i> Back</a></span>
+            <button type="submit" id="submitTest" class="btn btn-sm btn-outline-danger"><i class="fa fa-paper-plane" aria-hidden="true"></i>Submit</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div id="add-test-form-container">
+            <form id="addTestForm">
+                <input type="hidden" name="TestId" id="hdnTestId" value="@ViewBag.TestId" />
+                <div class="row mb-3">
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="TestType" class="form-label required">Test Type</label>
+                        <custom-dropdown name="TestType" id="TestType" selected-value="0" required>
+                            @* <option value="0" selected>Default</option> *@
+                        </custom-dropdown>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="Department" class="form-label required">Department</label>
+                        <custom-dropdown class="select2" name="Department" id="Department" required></custom-dropdown>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="TestDesc" class="form-label required">Test Name</label>
+                        <input type="text" class="form-control" id="TestDesc" name="TestDesc" required />
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="TestCode" class="form-label">Test Code</label>
+                        <input type="text" class="form-control" id="TestCode" name="TestCode" />
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="Price" class="form-label required">Price</label>
+                        <input type="number" class="form-control" id="Price" name="Price" required />
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="BarCodeSuffix" class="form-label">Bar Code Suffix</label>
+                        <input type="text" class="form-control" id="BarCodeSuffix" name="BarCodeSuffix" required />
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="Sample" class="form-labe required">Sample</label>
+                        <custom-dropdown name="Sample" id="Sample" required></custom-dropdown>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="SampleColor" class="form-label">Sample Color</label>
+                        <custom-dropdown name="SampleColor" id="SampleColor"></custom-dropdown>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="test-price" class="form-label col-12 required">Gender</label>
+                        <div class="col-12">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Gender" value="Male" id="chkMale" checked>
+                                <span class="form-check-label" for="chkMale">
+                                    Male
+                                </span>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Gender" value="Female" id="chkFemale">
+                                <span class="form-check-label" for="chkFemale">
+                                    Female
+                                </span>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Gender" value="Both" id="chkBoth">
+                                <span class="form-check-label" for="chkBoth">
+                                    Both
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 mt-4">
+                        <label class="form-label col-12 ">Required Field</label>
+                        <div class="col-12">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="RequiredField" value="LMP Required" id="LMPRequired" checked>
+                                <span class="form-check-label" for="LMPRequired">
+                                    LMP Required
+                                </span>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="RequiredField" value="ID Required" id="IDRequired">
+                                <span class="form-check-label" for="IDRequired">
+                                    ID Required
+                                </span>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="RequiredField" value="Consent Form" id="ConsentForm">
+                                <span class="form-check-label" for="ConsentForm">
+                                    Consent Form
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-2 mt-4">
+                        <label for="CollectionGuidline" class="form-label required">Collection Guidline</label>
+                        <div class="col-12">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="CollectionGuidline" value="1" id="PreCollectionGuidline_YES" checked>
+                                <span class="form-check-label" for="PreCollectionGuidline_YES">
+                                    Yes
+                                </span>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="CollectionGuidline" value="0" id="PreCollectionGuidline_NO">
+                                <span class="form-check-label" for="PreCollectionGuidline_NO">
+                                    No
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 mt-4">
+                        <label for="GuidlineAttachment" class="form-label">Guidline Attachment</label>
+                        <input type="file" class="form-control" id="GuidlineAttachment" name="GuidlineAttachment" required />
+                        <span id="docViwer"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8" id="divTestDetailscontainer" >
+        <div class="card testlist">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <span><strong>Added Test List</strong></span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead class="">
+                            <tr>
+                                <th>Select</th>
+                                <th>Name</th>
+                                <th>Field</th>
+                                <th>Unit</th>
+                                <th>Range</th>
+                                <th>Formula</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="testTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4" id="detailsForm">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <span><strong>Add Child Test</strong></span>
+                    @* <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-plus-square" aria-hidden="true"></i>add</button> *@
+                </div>
+            </div>
+            <div class="card-body">
+                <form id="multiForm" style="display:none;">
+                    <input type="hidden" id="hdnRowId2" name="RowId" value="0" />
+                    @* <input type="hidden" id="hdnParrentId2" name="ParrentId" value="0" /> *@
+                    <div class="mt-3">
+                        <label>Field Type</label>
+                        <custom-dropdown name="FieldType" id="FieldType2" selected-value="2"></custom-dropdown>
+                    </div>
+                    <div class="mt-3">
+                        <label>Name</label>
+                        <input type="text" class="form-control" id="TestName2" name="TestName" />
+                    </div>
+                    <div id="dvAddBtn">
+                        <div class="mt-3 d-flex justify-content-end">
+                            <button id="btnSave" class="btn btn-outline-danger"><i class="far fa-file"></i>Save</button>
+                        </div>
+                    </div>
+                    @* <hr id="hrline" /> *@
+                </form>
+
+                <form id="singleForm">
+                    <input type="hidden" id="hdnRowId1" name="RowId" value="0" />
+                    <input type="hidden" id="hdnParrentId1" name="ParrentId" value="0" />
+                    <div class="mt-3">
+                        <label class="required">Field Type</label>
+                        <custom-dropdown name="FieldType" id="FieldType1" selected-value="1" required></custom-dropdown>
+                    </div>
+                    <div class="mt-3">
+                        <label class="required">Name</label>
+                        <input type="text" class="form-control" id="TestName1" name="TestName" required/>
+                    </div>
+                    @* <div class="mt-3">
+                        <label>Name</label>
+                        <input type="text" class="form-control" id="TestMethod" name="TestMethod" />
+                    </div> *@
+                    <div id="dvFieldFrm">
+
+                        <div class="mt-3">
+                            <label class="required">Test Method</label>
+                            <input type="text" class="form-control" id="TestMethod" name="TestMethod" required />
+                        </div>
+                        <div class="mt-3 row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <label>Field</label>
+                                <custom-dropdown name="UnitFieldType" id="UnitFieldType" selected-value="1"></custom-dropdown>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <label>Unit</label>
+                                <input type="text" class="form-control" id="Unit" name="Unit" />
+                            </div>
+
+                        </div>
+
+                        <div class="row mt-3">
+                            <label>Result</label>
+                            <div class="col-lg-6 col-md-6 col-sm-6" id="divResultOperator">
+                                <custom-dropdown name="Operator" id="Operator"></custom-dropdown>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6" id="divResultRangeMin">
+                                <input type="text" class="form-control" id="ResultRangeMin" name="ResultRangeMin" />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <input type="text" class="form-control" id="ResultRangeMax" name="ResultRangeMax" />
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-check form-switch" style="margin-left: 10px; padding-left: 7px;">
+                                <input type="hidden" name="CriticalRange" value="false" />
+                                <input class="form-check-input" type="checkbox" id="CriticalRange" name="CriticalRange" value="true">
+                                <label class="form-check-label" for="CriticalRange">Critical Range</label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 toogle-CriticalRange">
+                                <input type="text" class="form-control" id="CriticalRangeMin" name="CriticalRangeMin" />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 toogle-CriticalRange">
+                                <input type="text" class="form-control" id="CriticalRangeMax" name="CriticalRangeMax" />
+                            </div>
+                        </div>
+
+                        <div class="mt-3 d-flex justify-content-end">
+                            <button type="button" id="btnAddField" class="btn btn-outline-danger"><i class="fa fa-plus"></i>Add Field</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/tests/add-test.js" asp-append-version="true"></script>
+}
+
+
