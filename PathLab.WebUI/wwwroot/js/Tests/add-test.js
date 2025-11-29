@@ -8,7 +8,7 @@
         toggleResultRange();
         toogleCriticalRange();
         ShowHideGuidlineAttchment();
-        unitTypeChange();
+        //unitTypeChange();
         if (testId != "0") {
             getTestById(testId);
             $("#submitTest").html('<i class="fa fa-sync" aria-hidden="true"></i>Update');
@@ -22,7 +22,7 @@
     function eventHandlers() {
         $("#UnitFieldType").on("change", toggleResultRange);
         $("#CriticalRange").on("change", toogleCriticalRange);
-        $("#UnitFieldType").on("change", unitTypeChange);
+        //$("#UnitFieldType").on("change", unitTypeChange);
         //$('[name="FieldType"]').on("change", toggleFieldForm);
         $("#btnSave").on("click", addMultiTypeRow);
         $("#btnAddField").on("click", addsingleTypeRow);
@@ -330,8 +330,15 @@
         var input = $("#UnitFieldType").val();
         if (input === "3") {
             $("#divResultOperator").show();
+            $("#divResultRangeMax").show();
             $("#divResultRangeMin").hide();
-        } else {
+        }
+        else if (input === "2") {
+            $("#divResultOperator").hide();
+            $("#divResultRangeMin").hide();
+            $("#divResultRangeMax").hide();
+        }
+        else {
             $("#divResultOperator").hide();
             $("#divResultRangeMin").show();
         }
@@ -357,16 +364,16 @@
             $(`label[for="GuidlineAttachment"]`).removeClass("required");
         }
     }
-    function unitTypeChange() {
-        let val = $("#UnitFieldType").val();
-        if (val == "1" || val == "3") {
+    //function unitTypeChange() {
+    //    let val = $("#UnitFieldType").val();
+    //    if (val == "1" || val == "3") {
 
-            $("#Unit").attr("type", "number")
-        } else {
+    //        $("#Unit").attr("type", "number")
+    //    } else {
 
-            $("#Unit").attr("type", "text")
-        }
-    }
+    //        $("#Unit").attr("type", "text")
+    //    }
+    //}
     function submitTest() {
         try {
             var isValid = validateRequiredForm("addTestForm");
