@@ -2,6 +2,7 @@
     let testDetailsList = [], fetchedDetailsList = [];
     $(document).ready(function () {
         console.log("AddTest initialized");
+        $("#Department").select2({width: "100%"});
         const testId = $("#hdnTestId").val();
         eventHandlers();
         searchbleSelect();
@@ -14,6 +15,7 @@
             $("#submitTest").html('<i class="fa fa-sync" aria-hidden="true"></i>Update');
         }
         resetForm();
+
     });
 
     //$(window).on("load", function () {

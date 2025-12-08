@@ -1,0 +1,240 @@
+﻿@{
+    Layout = null;
+}
+@{
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString();
+    var actionName = ViewContext.RouteData.Values["action"].ToString();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>.NET Core Dashboard</title>
+    <!-- Fonts and icons -->
+    <script src="~/assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { families: ["Public Sans:300,400,500,600,700"] },
+            custom: {
+                families: [
+                    "Font Awesome 5 Solid",
+                    "Font Awesome 5 Regular",
+                    "Font Awesome 5 Brands",
+                    "simple-line-icons",
+                ],
+                urls: ["/assets/css/fonts.min.css"],
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            },
+        });
+    </script>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/assets/css/plugins.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="~/css/common/site.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/fonts.min.css" />
+    <link rel="stylesheet" href="~/assets/css/datatables.min.css" />
+    <link rel="stylesheet" href="~/assets/css/toastr.min.css" />
+    <link rel="stylesheet" href="~/assets/css/richtext.min.css" />
+  
+</head>
+<body>
+
+    ```
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <div class="logo-area">
+            <div class="toggle-btn" id="toggleBtn"><i class="fa fa-bars"></i></div>
+            <a href="/Home/Index">
+                <img src="~/assets/img/pathlab/heart-logo.jpg" />
+            </a>
+        </div>
+        <div class="profile">
+            <h5><strong>Hi, Saheb</strong></h5>
+            <div class=" dropdown">
+                <img src="~/assets/img/Pathlab/Default_Profile_Picture.svg.png" data-bs-toggle="dropdown" />
+                <ul class="dropdown-menu dropdown-menu-end mt-2 shadow">
+                    <li><a class="dropdown-item" href="#"><i class="fa fa-user me-2"></i> Profile</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa fa-lock me-2"></i> Change Password</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#"><i class="fa fa-sign-out me-2"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIDEBAR MENU -->
+    <nav class="sidebar" id="sidebar">
+        <ul>
+            <li>
+                <a class="nav-link single" data-href="/Home/Index">
+                    <i class="fa fa-home"></i> <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link parent" data-bs-toggle="collapse" href="#testMenu">
+                    <i class="fa fa-flask"></i> <span class="text">Tests</span>
+                    <i class="fa fa-chevron-down caret"></i>
+                </a>
+                <ul class="collapse submenu" id="testMenu">
+                    <li><a class="nav-link" data-href="/Tests/TestList"> <span class="text">Test List</span></a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="nav-link" data-href="#">
+                    <i class="far fa-file"></i> <span class="text">Reports</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Overlay -->
+    <div class="overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="content" id="contentArea">
+        @RenderBody()
+    </div>
+
+    <!-- Footer Start -->
+    <partial name="_Footer" />
+    <!-- Footer End -->
+    <!-- JS Files -->
+    <script src="~/assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="~/assets/js/core/popper.min.js"></script>
+    <script src="~/assets/js/core/bootstrap.min.js"></script>
+    <script src="~/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="~/assets/js/plugin/chart.js/chart.min.js"></script>
+    <script src="~/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/assets/js/plugin/chart-circle/circles.min.js"></script>
+    <script src="~/assets/js/plugin/datatables/datatables.min.js"></script>
+    <script src="~/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="~/assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+    <script src="~/assets/js/plugin/jsvectormap/world.js"></script>
+    <script src="~/assets/js/plugin/sweetalert/sweetalert2.min.js"></script>
+    <script src="~/assets/js/plugin/select2/select2.full.min.js"></script>
+    <script src="~/assets/js/plugin/toastr/toastr.min.js"></script>
+    <script src="~/assets/js/plugin/richtext/richtext.min.js"></script>
+    <script src="~/assets/js/pathlab.js"></script>
+    <script src="~/js/common/site.js"></script>
+    <script src="~/js/common/common.js"></script>
+
+    <!-- Sidebar JS -->
+    <script>
+        const sidebar = document.getElementById("sidebar");
+        const toggleBtn = document.getElementById("toggleBtn");
+        const overlay = document.getElementById("sidebarOverlay");
+        const contentArea = document.getElementById("contentArea");
+        const footer = document.querySelector(".footer");
+
+        // Toggle sidebar
+        toggleBtn.addEventListener("click", () => {
+            if (window.innerWidth < 992) {
+                if (sidebar.classList.contains("mobile-open")) {
+                    closeMobileSidebar();
+                } else {
+                    openMobileSidebar();
+                }
+            } else {
+                const isCollapsed = sidebar.classList.contains("collapsed");
+                sidebar.classList.toggle("collapsed");
+                contentArea?.classList.toggle("shift");
+                footer?.classList.toggle("shift");
+
+                if (!isCollapsed) {
+                    // Close all submenus
+                    document.querySelectorAll(".submenu.show").forEach(sm => {
+                        new bootstrap.Collapse(sm, { toggle: false }).hide();
+                    });
+                    document.querySelectorAll(".nav-link.parent .caret").forEach(c => {
+                        c.classList.remove("fa-chevron-up");
+                        c.classList.add("fa-chevron-down");
+                    });
+                }
+            }
+        });
+
+        // Mobile sidebar functions
+        function openMobileSidebar() {
+            sidebar.classList.add("mobile-open");
+            overlay.classList.add("show");
+        }
+        function closeMobileSidebar() {
+            sidebar.classList.remove("mobile-open");
+            overlay.classList.remove("show");
+            document.querySelectorAll(".submenu.show").forEach(sm => {
+                new bootstrap.Collapse(sm, { toggle: false }).hide();
+            });
+            document.querySelectorAll(".nav-link.parent .caret").forEach(c => {
+                c.classList.remove("fa-chevron-up");
+                c.classList.add("fa-chevron-down");
+            });
+        }
+        overlay.addEventListener("click", closeMobileSidebar);
+        window.addEventListener("resize", () => {
+            if (window.innerWidth >= 992) closeMobileSidebar();
+        });
+
+        // Submenu caret rotation
+        document.querySelectorAll(".nav-link.parent").forEach(parent => {
+            const target = parent.getAttribute("href");
+            const submenu = document.querySelector(target);
+            const caret = parent.querySelector(".caret");
+            if (!submenu) return;
+
+            submenu.addEventListener("shown.bs.collapse", () => {
+                caret.classList.remove("fa-chevron-down");
+                caret.classList.add("fa-chevron-up");
+            });
+            submenu.addEventListener("hidden.bs.collapse", () => {
+                caret.classList.remove("fa-chevron-up");
+                caret.classList.add("fa-chevron-down");
+            });
+        });
+
+               // Active menu based on controller/action
+        const currentController = "@controllerName".toLowerCase();
+        const currentAction = "@actionName".toLowerCase();
+
+        document.querySelectorAll(".sidebar .nav-link").forEach(link => {
+            const href = link.getAttribute("data-href");
+            if (!href) return;
+
+            // Check if current URL matches the link
+            if (href.toLowerCase().includes(currentController)) {
+                link.classList.add("active");
+
+                // If inside submenu, expand parent
+                const submenu = link.closest(".submenu");
+                if (submenu) {
+                    new bootstrap.Collapse(submenu, { toggle: true }).show();
+                    const parentToggle = document.querySelector(`[href='#${submenu.id}']`);
+                    parentToggle?.classList.add("active");
+                }
+            }
+        });
+        // Redirect sidebar links
+        document.querySelectorAll(".sidebar .nav-link").forEach(link => {
+            link.addEventListener("click", function(e) {
+                const href = this.getAttribute("data-href");
+                const isParent = this.classList.contains("parent");
+                if (!href || href === "#" || isParent) return; // ignore parents or empty
+                if (window.innerWidth < 992) {
+                    // close mobile sidebar
+                    closeMobileSidebar();
+                }
+                window.location.href = href;
+            });
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
