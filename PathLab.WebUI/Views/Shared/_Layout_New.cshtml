@@ -32,7 +32,7 @@
         });
     </script>
     <!-- CSS Files -->
-    <link rel="stylesheet" href="~/assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="~/assets/css/plugins.min.css" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -80,7 +80,7 @@
             <li>
                 <a class="nav-link parent" data-bs-toggle="collapse" href="#testMenu">
                     <i class="fa fa-flask"></i> <span class="text">Tests</span>
-                    <i class="fa fa-chevron-down caret"></i>
+                    @* <i class="fa fa-chevron-down caret"></i> *@
                 </a>
                 <ul class="collapse submenu" id="testMenu">
                     <li><a class="nav-link" data-href="/Tests/TestList"> <span class="text">Test List</span></a></li>
@@ -120,10 +120,10 @@
     <script src="~/assets/js/plugin/sweetalert/sweetalert2.min.js"></script>
     <script src="~/assets/js/plugin/select2/select2.full.min.js"></script>
     <script src="~/assets/js/plugin/toastr/toastr.min.js"></script>
-    <script src="~/assets/js/plugin/richtext/richtext.min.js"></script>
-    <script src="~/assets/js/pathlab.js"></script>
-    <script src="~/js/common/site.js"></script>
-    <script src="~/js/common/common.js"></script>
+    <script src="~/assets/js/plugin/richtext/jquery.richtext.min.js"></script>
+    <script src="~/assets/js/pathlab.js" asp-append-version="true"></script>
+    @* <script src="~/js/common/site.js"></script> *@
+    <script src="~/js/common/common.js" asp-append-version="true"></script>
 
     <!-- Sidebar JS -->
     <script>
@@ -228,7 +228,7 @@
                 if (window.innerWidth < 992) {
                     // close mobile sidebar
                     closeMobileSidebar();
-                }
+            }
                 window.location.href = href;
             });
         });
