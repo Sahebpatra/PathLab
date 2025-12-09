@@ -100,7 +100,7 @@
             pIndex++
             let parentRow = `
             <tr class="parent-row" data-parent-id="${parent.RowId}">
-                <td class="text-center">
+                <td >
                     <input type="checkbox" id="chkselect_${parent.RowId}" data-ctrl="checkEdit" data-id="${parent.RowId}"/>
                 </td>
                 <td>${parent.TestName}</td>
